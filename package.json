@@ -9,10 +9,18 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@clerk/clerk-expo": "^2.2.10",
+    "@expo/metro-runtime": "~3.2.3",
     "expo": "~51.0.28",
+    "expo-auth-session": "~5.5.2",
+    "expo-crypto": "~13.0.2",
     "expo-status-bar": "~1.12.1",
+    "expo-web-browser": "~13.0.3",
+    "home-services": "file:",
     "react": "18.2.0",
-    "react-native": "0.74.5"
+    "react-dom": "18.2.0",
+    "react-native": "0.74.5",
+    "react-native-web": "~0.19.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
