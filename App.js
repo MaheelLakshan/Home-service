@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import Login from './App/Screens/LoginScreen/Login';
 import { ClerkProvider, SignedIn, SignedOut, useUser } from '@clerk/clerk-expo';
 import * as SecureStore from 'expo-secure-store';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigation from './App/Navigations/TabNavigation';
 
 const tokenCache = {
   async saveToken(key, value) {
@@ -16,7 +18,8 @@ const tokenCache = {
       return result;
       // alert("🔐 Here's your value 🔐 \n" + result);
     } else {
-      alert('No values stored under that key.');
+      // alert('No values stored under that key.');
+      console.log('No values stored under that key.');
     }
   },
 };
@@ -24,26 +27,18 @@ const tokenCache = {
 export default function App() {
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey="pk_test_Z2VudGxlLW11dHQtNzkuY2xlcmsuYWNjb3VudHMuZGV2JA">
-      <View style={styles.container}>
-        <SignedIn>
-          <UserDetails />
-        </SignedIn>
-        <SignedOut>
-          <Login />
-        </SignedOut>
-        <StatusBar style="auto" />
-      </View>
+      {/* <View style={styles.container}> */}
+      <SignedIn>
+        <NavigationContainer>
+          <TabNavigation />
+        </NavigationContainer>
+      </SignedIn>
+      <SignedOut>
+        <Login />
+      </SignedOut>
+      <StatusBar style="auto" />
+      {/* </View> */}
     </ClerkProvider>
-  );
-}
-
-function UserDetails() {
-  const { user } = useUser(); // Use the useUser hook to get user details
-
-  return (
-    <>
-      <Text>Hello {user?.emailAddresses[0]?.emailAddress}</Text>
-    </>
   );
 }
 
