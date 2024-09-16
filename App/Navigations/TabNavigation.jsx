@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../Screens/HomeScreen/HomeScreen';
 import BookingScreen from '../Screens/BookingScreen/BookingScreen';
 import ProfileScreen from '../Screens/ProfileScreen/ProfileScreen';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import HomeNavigation from './HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,10 +13,10 @@ const TabNavigation = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="home"
-        component={HomeScreen}
+        component={HomeNavigation}
         options={{
           tabBarLabel: ({ color }) => <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>Home</Text>,
-            tabBarIcon: ({ color, size }) => <FontAwesome name="home" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <FontAwesome name="home" size={size} color={color} />,
         }}
       />
       <Tab.Screen
@@ -24,7 +24,7 @@ const TabNavigation = () => {
         component={BookingScreen}
         options={{
           tabBarLabel: ({ color }) => <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>Book</Text>,
-            tabBarIcon: ({ color, size }) => <FontAwesome name="bookmark" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <FontAwesome name="bookmark" size={size} color={color} />,
         }}
       />
       <Tab.Screen
@@ -32,7 +32,7 @@ const TabNavigation = () => {
         component={ProfileScreen}
         options={{
           tabBarLabel: ({ color }) => <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>Profile</Text>,
-            tabBarIcon: ({ color, size }) => <FontAwesome name="user" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <FontAwesome name="user" size={size} color={color} />,
         }}
       />
     </Tab.Navigator>
