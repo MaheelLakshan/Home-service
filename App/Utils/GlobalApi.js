@@ -2,6 +2,30 @@ import { gql, request } from 'graphql-request';
 
 const MASTER_URL = 'https://ap-south-1.cdn.hygraph.com/content/cm14kl7bu04ht07w8uxa2kyy3/master';
 
+const getBusinessList = async () => {
+  const query = gql`
+    query GetBusinessList {
+      businessLists {
+        id
+        name
+        email
+        contactPerson
+        category {
+          name
+        }
+        address
+        about
+        images {
+          url
+        }
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+
 const getCategories = async () => {
   const query = gql`
     query GetCategory {
@@ -39,4 +63,5 @@ const getSlider = async () => {
 export default {
   getSlider,
   getCategories,
+  getBusinessList,
 };

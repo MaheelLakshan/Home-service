@@ -17,7 +17,7 @@ const Categories = () => {
   };
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 15 }}>
       <Heading title={'Categories'} isViewAll={true} />
       <FlatList
         data={category}
