@@ -35,7 +35,6 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
     padding: 20,
     backgroundColor: Colors.PRIMARY,
     borderBottomLeftRadius: 25,

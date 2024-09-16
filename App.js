@@ -9,14 +9,14 @@ import { useFonts } from 'expo-font';
 
 export default function App() {
   const [fontLoaded] = useFonts({
-    'Outfit': require('./assets/fonts/Outfit-VariableFont_wght.ttf'),
+    Outfit: require('./assets/fonts/Outfit-VariableFont_wght.ttf'),
     'Outfit-Bold': require('./assets/fonts/Outfit-static/Outfit-Bold.ttf'),
     'Outfit-Light': require('./assets/fonts/Outfit-static/Outfit-Light.ttf'),
     'Outfit-Medium': require('./assets/fonts/Outfit-static/Outfit-Medium.ttf'),
     'Outfit-Regular': require('./assets/fonts/Outfit-static/Outfit-Regular.ttf'),
     'Outfit-SemiBold': require('./assets/fonts/Outfit-static/Outfit-SemiBold.ttf'),
     'Outfit-Thin': require('./assets/fonts/Outfit-static/Outfit-Thin.ttf'),
-    'PlaypenSans': require('./assets/fonts/PlaypenSans-VariableFont_wght.ttf'),
+    PlaypenSans: require('./assets/fonts/PlaypenSans-VariableFont_wght.ttf'),
   });
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey="pk_test_Z2VudGxlLW11dHQtNzkuY2xlcmsuYWNjb3VudHMuZGV2JA">
