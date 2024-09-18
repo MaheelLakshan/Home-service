@@ -1,17 +1,19 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Colors from '../../../Constants/Colors';
+import { useNavigation } from '@react-navigation/native';
 
 const BusinessListItemSmall = ({ business }) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.push('business-details', { business: business })}>
       <Image source={{ uri: business?.images?.url }} style={styles.image} />
       <View style={styles.infoContainer}>
         <Text style={{ fontSize: 17, fontFamily: 'outfit-medium' }}>{business?.name}</Text>
         <Text style={{ fontSize: 12, fontFamily: 'outfit', color: Colors.DARK_GRAY }}>{business?.contactPerson}</Text>
         <Text style={{ fontSize: 12, fontFamily: 'outfit', padding: 1, color: Colors.PRIMARY, backgroundColor: Colors.PRIMARY_LIGHT, borderRadius: 5, alignSelf: 'flex-start' }}>{business?.category?.name}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

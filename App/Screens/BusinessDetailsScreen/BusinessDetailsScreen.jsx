@@ -15,7 +15,7 @@ const BusinessDetailsScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    param && setBusiness(param?.business);
+    setBusiness(param?.business);
   }, [param]);
 
   return (
