@@ -6,6 +6,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import GlobalApi from '../../Utils/GlobalApi';
 import BusinessListItem from './BusinessListItem';
 import Colors from '../../../Constants/Colors';
+import BackButton from '../../Components/BackButton';
 
 const BusinessListByCategoryScreen = () => {
   const param = useRoute().params;
@@ -22,10 +23,7 @@ const BusinessListByCategoryScreen = () => {
 
   return (
     <View style={{ padding: 20, paddingTop: 30 }}>
-      <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center', paddingBottom: 18 }} onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back-outline" size={24} color="black" />
-        <Text style={{ fontSize: 20, fontFamily: 'outfit-medium' }}>{param?.category}</Text>
-      </TouchableOpacity>
+      <BackButton title={param?.category} />
       {businessListByCategory?.length > 0 ? (
         <FlatList data={businessListByCategory} renderItem={({ item, index }) => <BusinessListItem business={item} />} />
       ) : (
