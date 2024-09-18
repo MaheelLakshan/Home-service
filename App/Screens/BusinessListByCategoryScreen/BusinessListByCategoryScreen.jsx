@@ -22,7 +22,7 @@ const BusinessListByCategoryScreen = () => {
   };
 
   return (
-    <View style={{ padding: 20, paddingTop: 30 }}>
+    <View style={{ padding: 20, paddingTop: 30, height: '100%' }}>
       <BackButton title={param?.category} />
       {businessListByCategory?.length > 0 ? (
         <FlatList data={businessListByCategory} renderItem={({ item, index }) => <BusinessListItem business={item} />} />

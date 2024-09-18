@@ -6,4 +6,6 @@ export default {
   WHITE: '#ffffff',
   DARK_GRAY: '#6D6D6D',
   LIGHT_GRAY: '#EDEDED',
+  LIGHT_GREEN: '#5ce65c',
+  LIGHT_RED: '#FF474C',
 };
