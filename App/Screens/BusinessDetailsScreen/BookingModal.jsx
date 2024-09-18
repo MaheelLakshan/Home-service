@@ -1,16 +1,20 @@
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import CalendarPicker from 'react-native-calendar-picker';
 import Colors from '../../../Constants/Colors';
 import { FlatList } from 'react-native';
 import Heading from '../../Components/Heading';
+import GlobalApi from '../../Utils/GlobalApi';
+import { useUser } from '@clerk/clerk-expo';
+import moment from 'moment';
 
-const BookingModal = ({ hideModal }) => {
+const BookingModal = ({ businessId, hideModal }) => {
   const [timeList, setTimeList] = useState();
   const [selectedTime, setSelectedTime] = useState();
   const [selectedDate, setSelectedDate] = useState();
   const [note, setNote] = useState();
+  const { user } = useUser();
 
   useEffect(() => {
     getTime();
@@ -32,6 +36,41 @@ const BookingModal = ({ hideModal }) => {
       });
     }
     setTimeList(timeList);
+  };
+
+  const createNewBooking = () => {
+    if (!selectedDate || !selectedTime) {
+      Alert.alert(
+        'Error', // Title
+        'Please Select!', // Message
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') }, // Button
+        ],
+        { cancelable: false } // Optional: Whether the alert can be dismissed by tapping outside it
+      );
+
+      return;
+    }
+
+    const data = {
+      userName: user?.fullName,
+      userEmail: user?.primaryEmailAddress.emailAddress,
+      time: selectedTime,
+      date: moment(selectedDate).format('DD-MMM-YYYY'),
+      note: note,
+      businessId: businessId,
+    };
+
+    GlobalApi.createBooking(data).then((res) => {
+      Alert.alert(
+        'Success', // Title of the alert
+        'Booking Created Successfully!', // Message of the alert
+        [
+          { text: 'OK', onPress: () => hideModal() }, // Button with callback
+        ],
+        { cancelable: true } // Optional: Whether the alert can be dismissed by tapping outside
+      );
+    });
   };
 
   return (
@@ -67,7 +106,7 @@ const BookingModal = ({ hideModal }) => {
           <TextInput numberOfLines={4} multiline={true} placeholder="Note" style={styles.noteTextArea} onChange={(text) => setNote(text)} />
         </View>
 
-        <TouchableOpacity style={{ backgroundColor: Colors.PRIMARY, marginTop: 30, borderRadius: 99 }}>
+        <TouchableOpacity onPress={createNewBooking} style={{ backgroundColor: Colors.PRIMARY, marginTop: 30, borderRadius: 99 }}>
           <Text style={styles.confirmBtn}>Confirm & Book</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>

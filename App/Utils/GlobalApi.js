@@ -2,6 +2,25 @@ import { gql, request } from 'graphql-request';
 
 const MASTER_URL = 'https://ap-south-1.cdn.hygraph.com/content/cm14kl7bu04ht07w8uxa2kyy3/master';
 
+const createBooking = async (data) => {
+  const mutationQuery = gql`
+    mutation createBooking {
+      createBooking(
+              data: { bookingStatus: booked, businessList: { connect: { id: "${data.businessId}"
+    } }, date: "${data.date}", time: "${data.time}", userEmail: "${data.userEmail}", userName: "${data.userName}" }) {
+        id
+      }
+        publishManyBookings(to: PUBLISHED) {
+     count
+  }
+    
+    }
+  `;
+
+  const result = await request(MASTER_URL, mutationQuery);
+  return result;
+};
+
 // businessLists(where: { category: { name: "`+categoryType+`" } }) {
 
 const getBusinessListByCategory = async (categoryType) => {
@@ -90,4 +109,5 @@ export default {
   getCategories,
   getBusinessList,
   getBusinessListByCategory,
+  createBooking,
 };

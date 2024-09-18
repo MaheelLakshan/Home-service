@@ -69,7 +69,7 @@ const BusinessDetailsScreen = () => {
       </View>
 
       <Modal animationType="slide" visible={showModal}>
-        <BookingModal hideModal={() => setShowModal(false)} />
+        <BookingModal businessId={business?.id} hideModal={() => setShowModal(false)} />
       </Modal>
     </View>
   );
