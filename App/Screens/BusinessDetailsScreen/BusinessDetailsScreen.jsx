@@ -18,6 +18,11 @@ const BusinessDetailsScreen = () => {
     setBusiness(param?.business);
   }, [param]);
 
+  const onMessageBtnClick = () => {
+    console.log(business?.email);
+    // Linking.openURL('mailto:' + business?.email + '?subject=I am looking for your Service&body=Hi there,');
+  };
+
   return (
     <View>
       <ScrollView style={{ height: '90%' }}>
@@ -59,7 +64,7 @@ const BusinessDetailsScreen = () => {
       </ScrollView>
 
       <View style={{ display: 'flex', flexDirection: 'row', margin: 10, gap: 15 }}>
-        <TouchableOpacity style={styles.messageBtn}>
+        <TouchableOpacity style={styles.messageBtn} onPress={() => onMessageBtnClick()}>
           <Text style={{ textAlign: 'center', fontFamily: 'outfit-medium', color: Colors.PRIMARY, fontSize: 18 }}>Message</Text>
         </TouchableOpacity>
 
